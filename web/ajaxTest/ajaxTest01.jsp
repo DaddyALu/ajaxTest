@@ -48,13 +48,16 @@
                         data:{uname:unameVal},  //发送参数  {key:value,....}， --别的写法：data:"uname="+unameVal,
                         dataType:'json',  //后台返回的数据类型，一般都是json（默认也是？），该属性代替了 json.parse()
                         //async:true  //是否为异步，默认为true，少用
-                        success:function (res) {  //成功时的回调函数，形参参数名随意
-                            console.log(res);
-                            console.log(res.data);
+                        success:function (res) {  //成功时的回调函数，形参参数名随意，但是只有第一个参数表示读取到的数据
+                            console.log("res："+res);
+                            console.log("res.data："+res.data);
+                            if (res != null){
+                                console.log("typeof(res)："+typeof(res));
+                            }
                             $("#unameshow").text(res);
                             $("#unameshow").css("background-color","green");
                         },
-                        error:function (error) {  //请求失败的回调函数，参数名随意
+                        error:function (error) {  //请求失败的回调函数，参数名随意  --无获取到的返回值时属于失败
                             console.log(error,"请求失败");
                         }
                     });
